@@ -50,9 +50,15 @@ export async function POST(req: Request) {
       const { minHabitability, maxDistance } = parameters;
 
       const results = planets
-        .filter(p => !minHabitability || p.habitability_score >= minHabitability)
-        .filter(p => !maxDistance || p.sy_dist <= maxDistance)
-        .slice(0, 10);
+  .filter(p => 
+    !minHabitability || 
+    (typeof p.habitability_score === "number" && p.habitability_score >= minHabitability)
+  )
+  .filter(p => 
+    !maxDistance || 
+    (typeof p.sy_dist === "number" && p.sy_dist <= maxDistance)
+  )
+  .slice(0, 10);
 
       return NextResponse.json({
         result: JSON.stringify(results),
@@ -64,7 +70,10 @@ export async function POST(req: Request) {
       const { planetName } = parameters;
 
       const planet = planets.find(
-        p => p.pl_name?.toLowerCase() === planetName?.toLowerCase()
+     p => 
+  typeof p.pl_name === "string" &&
+  typeof planetName === "string" &&
+  p.pl_name.toLowerCase() === planetName.toLowerCase()
       );
 
       return NextResponse.json({

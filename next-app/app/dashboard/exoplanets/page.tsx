@@ -255,7 +255,7 @@ export default function ExoplanetsPage() {
     }
 
     return (
-        <div className={theme === "dark" ? "dark" : ""} ref={containerRef}>
+        <div className={theme === "dark" ? "dark" : ""} ref={containerRef}> 
             <div className="relative min-h-screen bg-[#030014]">
                 {particleEffects && <ParticleBackground />}
                 {particleEffects && <SpaceBackground />}
@@ -359,6 +359,7 @@ export default function ExoplanetsPage() {
                 </header>
 
                 <div className="container py-6 space-y-8 relative z-10 pr-8 pl-8">
+                {/* searchbar and other */}
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h1 className="text-3xl font-bold tracking-tight text-white">Exoplanets</h1>
@@ -413,6 +414,7 @@ export default function ExoplanetsPage() {
                         </div>
                     </div>
 
+                    {/* Tab filter and card section */}
                     <Tabs defaultValue="all" className="space-y-6">
                         <TabsList className="grid w-full grid-cols-3 bg-white/5 border border-white/10 p-0.5">
                             <TabsTrigger
@@ -470,7 +472,7 @@ export default function ExoplanetsPage() {
                             </Badge>
                         </div>
 
-
+                        {/* card section */}
                         <TabsContent value="all" className="mt-0">
                             {isLoading ? (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

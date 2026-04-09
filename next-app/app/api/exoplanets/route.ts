@@ -30,17 +30,20 @@ export async function GET(req: NextRequest) {
             const data: ExoplanetData[] = [];
 
             fs.createReadStream(filePath)
-                .pipe(csv())
+                .pipe(csv())//converts each ro to json
                 .on("data", (row: Record<string, string>) => {
                     const formattedRow: Record<string, string | number> = {}; 
+                    // Create a new object to hold the formatted row
+                    // (fromatted down by performing operations on row)
 
-                    for (const key in row) {
+                    for (const key in row) {//
                         const value = row[key].trim(); 
 
                         formattedRow[key] = isNaN(Number(value)) ? value : parseFloat(value);
+                        //convert "5.3" to 5.3(using parseFloat) and "Earth" to "Earth"
                     }
 
-                    data.push(formattedRow as ExoplanetData); 
+                    data.push(formattedRow as ExoplanetData); //each cleaned formatted row is pushed to data array 
                 })
                 .on("end", () => resolve(data))
                 .on("error", (err) => reject(err));

@@ -58,7 +58,7 @@ export default function ExoplanetComparison() {
 
     const handleSelectExoplanet = (exoplanet: Exoplanet) => {
         if (selectedExoplanets.some((p) => p.pl_name === exoplanet.pl_name)) {
-            // Already selected, do nothing
+            // <Alre></Alre>ady selected, do nothing
             return
         }
 

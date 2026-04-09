@@ -4,7 +4,7 @@ import path from "path";
 import csv from "csv-parser";
 
 interface ExoplanetData {
-  [key: string]: any;
+  [key: string]: string | number | null;
 }
 
 let cachedData: ExoplanetData[] | null = null;
